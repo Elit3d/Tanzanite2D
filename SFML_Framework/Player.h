@@ -8,7 +8,7 @@ class Player :
 public:
 	Player();
 	~Player();
-	Player(std::string imgpath, int health);
+	Player(std::string imgpath, int health, sf::Vector2f location);
 
 	void Update();
 	void Draw(sf::RenderWindow &window);

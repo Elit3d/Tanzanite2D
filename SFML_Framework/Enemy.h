@@ -20,7 +20,7 @@ class Enemy :
 public:
 	Enemy();
 	~Enemy();
-	Enemy(std::string imgpath, int health);
+	Enemy(std::string imgpath, int health, sf::Vector2f location);
 
 	void Update();
 	void Draw(sf::RenderWindow &window);

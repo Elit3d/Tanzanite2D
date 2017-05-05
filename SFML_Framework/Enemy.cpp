@@ -10,8 +10,8 @@ Enemy::~Enemy()
 {
 }
 
-Enemy::Enemy(std::string imgpath, int health)
-	: Character(imgpath, health)
+Enemy::Enemy(std::string imgpath, int health, sf::Vector2f location)
+	: Character(imgpath, health, location)
 {
 	state = new EnemyStates(IDLE);
 }

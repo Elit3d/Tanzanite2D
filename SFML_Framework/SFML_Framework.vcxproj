@@ -68,8 +68,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>G:\GAMES BY ME\SFML_Framework\SFML-2.4.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>G:\GAMES BY ME\SFML_Framework\SFML-2.4.0\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>G:\GAMES BY ME\Tanzanite2D\SFML-2.4.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>G:\GAMES BY ME\Tanzanite2D\SFML-2.4.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

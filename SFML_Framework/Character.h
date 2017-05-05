@@ -9,7 +9,7 @@ class Character :
 public:
 	Character();
 	~Character();
-	Character(std::string imgpath, int health);
+	Character(std::string imgpath, int health, sf::Vector2f location);
 
 	virtual void Update() = NULL;
 	virtual void Draw(sf::RenderWindow &window) = 0;

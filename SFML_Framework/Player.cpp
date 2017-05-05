@@ -10,8 +10,8 @@ Player::~Player()
 {
 }
 
-Player::Player(std::string imgpath, int health) 
-	: Character(imgpath, health)
+Player::Player(std::string imgpath, int health, sf::Vector2f location)
+	: Character(imgpath, health, location)
 {
 }
 

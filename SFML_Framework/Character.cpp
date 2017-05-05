@@ -14,10 +14,11 @@ Character::~Character()
 }
 
 
-Character::Character(std::string imgpath, int health)
+Character::Character(std::string imgpath, int health, sf::Vector2f location)
 {
-	texture.loadFromFile(imgpath);
-	sprite.setTexture(texture);
+	texture.loadFromFile(imgpath); // load the texture
+	sprite.setTexture(texture);  // set sprite to the texture
+	sprite.setPosition(location); //initial sprite position
 	_health = health;
 }
 
