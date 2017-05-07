@@ -13,7 +13,7 @@ Game::~Game()
 void Game::Setup()
 {
 	state = new GameStates(State::SPLASH); // Set the first game state
-	enemy = new Enemy("images/enemy.png", 100); // Enemy setup
+	enemy = new Enemy("images/enemy.png", 100, sf::Vector2f(10.0f, 10.0f)); // Enemy setup
 	charVector.push_back(enemy);
 }
 
