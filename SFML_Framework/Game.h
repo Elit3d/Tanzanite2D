@@ -7,6 +7,7 @@
 #include "GameStates.h"
 #include "Character.h"
 #include "Enemy.h"
+#include "Level.h"
 
 class Game
 {
@@ -25,6 +26,7 @@ public:
 private:
 	GameStates *state;
 	Enemy *enemy;
+	Level *level;
 
 	std::vector<Character*> charVector;
 	std::vector<Character*>::iterator charIter;
