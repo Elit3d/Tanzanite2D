@@ -68,8 +68,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML-2.4.0\include;G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML_Framework\Thor\include;$(IncludePath)</IncludePath>
-    <LibraryPath>G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML-2.4.0\lib;G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML_Framework\Thor\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML-2.4.0\include;G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML_Framework\Thor2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML-2.4.0\lib;G:\GAMES BY ME\Tanzanite2D\Tanzanite2D\SFML_Framework\Thor2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -97,7 +97,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;winmm.lib;gdi32.lib;thor-d.lib;thor-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;opengl32.lib;winmm.lib;gdi32.lib;thor-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>

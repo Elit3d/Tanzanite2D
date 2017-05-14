@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Enemy.h"
 #include "Level.h"
+#include "Animation.h"
 
 class Game
 {
@@ -27,9 +28,19 @@ private:
 	GameStates *state;
 	Enemy *enemy;
 	Level *level;
+	Animation anim;
 
 	std::vector<Character*> charVector;
 	std::vector<Character*>::iterator charIter;
+
+	sf::Texture animationTexture;
+	sf::Sprite animationSprite;
+
+	thor::FrameAnimation walk;
+
+	sf::Clock frameClock;
+
+	thor::Animator<sf::Sprite, std::string> animator;
 };
 
 
