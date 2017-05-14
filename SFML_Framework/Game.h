@@ -28,7 +28,8 @@ private:
 	GameStates *state;
 	Enemy *enemy;
 	Level *level;
-	Animation anim;
+	Animation *PlayerAnimation;
+	Animation *EnemyAnimation;
 
 	std::vector<Character*> charVector;
 	std::vector<Character*>::iterator charIter;
@@ -36,11 +37,14 @@ private:
 	sf::Texture animationTexture;
 	sf::Sprite animationSprite;
 
-	thor::FrameAnimation walk;
+	sf::Texture animation_enemyTexture;
+	sf::Sprite animation_enemySprite;
 
 	sf::Clock frameClock;
+	thor::FrameAnimation shoot_enemy;
 
 	thor::Animator<sf::Sprite, std::string> animator;
+
 };
 
 

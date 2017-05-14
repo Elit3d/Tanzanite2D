@@ -10,20 +10,13 @@ Game::~Game()
 {
 }
 
-void addFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, float duration = 1.f)
-{
-	const int step = (yFirst < yLast) ? +1 : -1;
-	yLast += step; // so yLast is excluded in the range
-
-	for (int y = yFirst; y != yLast; y += step)
-		animation.addFrame(duration, sf::IntRect(36 * x, 39 * y, 36, 39));
-}
-
 void Game::Setup()
 {
 	state = new GameStates(State::SPLASH); // Set the first game state
 	enemy = new Enemy("images/enemy.png", 100, sf::Vector2f(10.0f, 10.0f)); // Enemy setup
 	level = new Level();
+	PlayerAnimation = new Animation();
+	EnemyAnimation = new Animation();
 
 	level->LoadFromFile(""); // load level tilemap from file
 
@@ -32,10 +25,18 @@ void Game::Setup()
 	animationTexture.loadFromFile("images/animation.png");
 	animationSprite.setTexture(animationTexture);
 
-	addFrames(walk, 0, 0, 7);
-	addFrames(walk, 0, 6, 0);
+	animation_enemyTexture.loadFromFile("images/animation.png");
+	animation_enemySprite.setTexture(animation_enemyTexture);
+	animation_enemySprite.setPosition(64, 64);
 
-	animator.addAnimation("walk", walk, sf::seconds(1.f));
+	// Animation setup
+	PlayerAnimation->AddFrames(walk_player, 0, 0, 7);
+	PlayerAnimation->AddFrames(walk_player, 0, 6, 0);
+	PlayerAnimation->AddAnimation("walk", walk_player, 1.f);
+
+	EnemyAnimation->AddFrames(shoot_enemy, 1, 0, 7);
+	EnemyAnimation->AddFrames(shoot_enemy, 1, 7, 0);
+	EnemyAnimation->AddAnimation("shoot", shoot_enemy, 1.f);
 }
 
 void Game::Update(sf::RenderWindow &window)
@@ -50,7 +51,10 @@ void Game::Update(sf::RenderWindow &window)
 				switch (event.key.code)
 				{
 				case sf::Keyboard::W:		
-					animator.playAnimation("walk", true);
+					PlayerAnimation->PlayAnimation("walk", true); // play the animation
+					break;
+				case sf::Keyboard::A:
+					EnemyAnimation->PlayAnimation("shoot", true);
 					break;
 				}
 			}
@@ -66,8 +70,11 @@ void Game::Update(sf::RenderWindow &window)
 				window.close();
 		}
 
-		animator.update(frameClock.restart());
-		animator.animate(animationSprite);
+		EnemyAnimation->Update(); // Update the animation
+		EnemyAnimation->AnimateSprite(animation_enemySprite); // Animate the sprite
+
+		PlayerAnimation->Update();
+		PlayerAnimation->AnimateSprite(animationSprite);
 
 		Draw(window);
 	}
@@ -105,6 +112,7 @@ void Game::Draw(sf::RenderWindow &window)
 	case SPLASH:
 		std::cout << "In splash" << std::endl;
 		window.draw(animationSprite);
+		window.draw(animation_enemySprite);
 		break;
 	case MENU:
 		std::cout << "In menu" << std::endl;

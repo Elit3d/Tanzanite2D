@@ -35,8 +35,12 @@ void Animation::StopAnimation()
 	animator.stopAnimation(); // stop current animation
 }
 
-void Animation::AnimateSprite(sf::Sprite sprite, sf::Time dt)
+void Animation::Update()
 {
-	animator.update(dt);
+	animator.update(DeltaTime.restart());
+}
+
+void Animation::AnimateSprite(sf::Sprite &sprite)
+{
 	animator.animate(sprite);
 }
