@@ -28,6 +28,7 @@ private:
 	GameStates *state;
 	Enemy *enemy;
 	Level *level;
+
 	Animation *PlayerAnimation;
 	Animation *EnemyAnimation;
 
@@ -40,7 +41,8 @@ private:
 	sf::Texture animation_enemyTexture;
 	sf::Sprite animation_enemySprite;
 
-	sf::Clock frameClock;
+	thor::FrameAnimation walk_player;
+
 	thor::FrameAnimation shoot_enemy;
 
 	thor::Animator<sf::Sprite, std::string> animator;
