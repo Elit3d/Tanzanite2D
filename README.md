@@ -1,6 +1,5 @@
 # Tanzanite2D
-SFML C++ Framework created by Kyle Thomas
-www.kyle-thomas.com
+SFML C++ Framework created by [Kyle Thomas](www.kyle-thomas.com)
 
 Currently runs on SFML 2.4.0 -- Will be keeping it up to date as much as possible
 
