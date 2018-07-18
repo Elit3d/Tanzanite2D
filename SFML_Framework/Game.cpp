@@ -13,13 +13,17 @@ Game::~Game()
 void Game::Setup()
 {
 	state = new GameStates(State::SPLASH); // Set the first game state
+	player = new Player("images/player.png", 100, sf::Vector2f(10.0f, 100.0f)); // Player setup
 	enemy = new Enemy("images/enemy.png", 100, sf::Vector2f(10.0f, 10.0f)); // Enemy setup
 	level = new Level();
+
+	// Working on my own animation class
 	PlayerAnimation = new Animation();
 	EnemyAnimation = new Animation();
 
 	level->LoadFromFile(""); // load level tilemap from file
 
+	charVector.push_back(player);
 	charVector.push_back(enemy);
 
 	animationTexture.loadFromFile("images/animation.png");
@@ -36,7 +40,9 @@ void Game::Setup()
 
 	EnemyAnimation->AddFrames(shoot_enemy, 1, 0, 7);
 	EnemyAnimation->AddFrames(shoot_enemy, 1, 7, 0);
-	EnemyAnimation->AddAnimation("shoot", shoot_enemy, 1.f);
+	EnemyAnimation->AddAnimation("shoot", shoot_enemy, 1.f); 
+
+
 }
 
 void Game::Update(sf::RenderWindow &window)
@@ -50,11 +56,21 @@ void Game::Update(sf::RenderWindow &window)
 			{
 				switch (event.key.code)
 				{
-				case sf::Keyboard::W:		
-					PlayerAnimation->PlayAnimation("walk", true); // play the animation
+				case sf::Keyboard::W:
+					player->sprite.move(0.f, -1.f);
+
+					if (player->Collision(enemy->sprite))
+						player->sprite.move(0.f, 1.f);
 					break;
 				case sf::Keyboard::A:
-					EnemyAnimation->PlayAnimation("shoot", true);
+					break;
+				}
+			}
+			else if (event.type == sf::Event::KeyReleased)
+			{
+				switch (event.key.code)
+				{
+					case sf::Keyboard::W:
 					break;
 				}
 			}
@@ -85,19 +101,14 @@ void Game::UpdateGameStates()
 	switch (state->GetState())
 	{
 	case SPLASH:
-		std::cout << "In splash" << std::endl;
 		break;
 	case MENU:
-		std::cout << "In menu" << std::endl;
 		break;
 	case GAME:
-		std::cout << "In game" << std::endl;
 		break;
 	case PAUSE:
-		std::cout << "In pause" << std::endl;
 		break;
 	case OPTIONS:
-		std::cout << "In options" << std::endl;
 		break;
 	}
 }
@@ -110,23 +121,20 @@ void Game::Draw(sf::RenderWindow &window)
 	switch (state->GetState())
 	{
 	case SPLASH:
-		std::cout << "In splash" << std::endl;
-		window.draw(animationSprite);
-		window.draw(animation_enemySprite);
+		// Draw all characters
+		for (auto& it : charVector)
+		{
+			(it)->Draw(window);
+		}
 		break;
 	case MENU:
-		std::cout << "In menu" << std::endl;
 		break;
 	case GAME:
-		std::cout << "In game" << std::endl;
-
 		level->Draw(window); // draw the level tilemap
 		break;
 	case PAUSE:
-		std::cout << "In pause" << std::endl;
 		break;
 	case OPTIONS:
-		std::cout << "In options" << std::endl;
 		break;
 	}
 

@@ -5,10 +5,35 @@ Animation::Animation()
 {
 }
 
+Animation::Animation(sf::Texture& texture)
+{
+}
 
 Animation::~Animation()
 {
 }
+
+void Animation::AddFrame(sf::IntRect rect)
+{
+	_frames.push_back(rect);
+}
+
+void Animation::AnimTexture(sf::Texture &texture)
+{
+	_sprite.setTexture(texture);
+}
+
+void Animation::Play()
+{
+	if (_frames.size() != NULL)
+	{
+		for (int i = 0; i < _frames.size(); i++)
+			_sprite.setTextureRect(_frames[i]);
+	}
+}
+
+
+
 
 void Animation::AddFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, float duration)
 {
@@ -43,4 +68,9 @@ void Animation::Update()
 void Animation::AnimateSprite(sf::Sprite &sprite)
 {
 	animator.animate(sprite);
+}
+
+bool Animation::bIsAnimPlaying()
+{
+	return animator.isPlayingAnimation();
 }

@@ -6,6 +6,7 @@
 
 #include "GameStates.h"
 #include "Character.h"
+#include "Player.h"
 #include "Enemy.h"
 #include "Level.h"
 #include "Animation.h"
@@ -26,6 +27,7 @@ public:
 
 private:
 	GameStates *state;
+	Player *player;
 	Enemy *enemy;
 	Level *level;
 

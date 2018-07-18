@@ -40,3 +40,11 @@ int Character::getHealth()
 {
 	return _health;
 }
+
+// Collision between this and another entity
+bool Character::Collision(sf::Sprite &s)
+{
+	if (sprite.getGlobalBounds().intersects(s.getGlobalBounds()))
+		return true;
+	return false;
+}

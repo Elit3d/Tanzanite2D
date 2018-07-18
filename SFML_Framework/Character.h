@@ -2,7 +2,9 @@
 #define _CHARACTER_H_
 
 #include "Entity.h"
+#include "Animation.h"
 #include <iostream>
+
 class Character :
 	public Entity
 {
@@ -17,6 +19,10 @@ public:
 	virtual void setHealth(int health) = NULL;
 	virtual int getHealth() = NULL;
 
+	/* Might want to look into perfect pixel collision */
+	/* for more accurate collision detection and for */
+	/* transparent edges of the image files */
+	virtual bool Collision(sf::Sprite &s) = NULL;
 private:
 	int _health;
 };

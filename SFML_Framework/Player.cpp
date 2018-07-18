@@ -13,6 +13,8 @@ Player::~Player()
 Player::Player(std::string imgpath, int health, sf::Vector2f location)
 	: Character(imgpath, health, location)
 {
+	sf::Texture t;
+	t.loadFromFile(imgpath);
 }
 
 void Player::Update()
@@ -33,4 +35,9 @@ void Player::setHealth(int health)
 int Player::getHealth()
 {
 	return Character::getHealth();
+}
+
+bool Player::Collision(sf::Sprite &s)
+{
+	return Character::Collision(s);
 }

@@ -63,3 +63,8 @@ int Enemy::getHealth()
 {
 	return Character::getHealth();
 }
+
+bool Enemy::Collision(sf::Sprite &s)
+{
+	return Character::Collision(s);
+}

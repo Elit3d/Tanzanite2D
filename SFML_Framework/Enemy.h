@@ -28,6 +28,9 @@ public:
 	void setHealth(int health);
 	int getHealth();
 
+	void AddAnimation(Animation* anim);
+
+	bool Collision(sf::Sprite &s);
 protected:
 	EnemyStates GetStates();
 	void States();

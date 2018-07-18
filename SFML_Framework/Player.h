@@ -15,6 +15,9 @@ public:
 
 	void setHealth(int health);
 	int getHealth();
+
+	bool Collision(sf::Sprite &s);
+private:
 };
 
 
