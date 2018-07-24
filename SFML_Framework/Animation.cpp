@@ -1,76 +1,54 @@
+////////////////////////////////////////////////////////////
+//
+// Copyright (C) 2014 Maximilian Wagenbach (aka. Foaly) (foaly.f@web.de)
+//
+// This software is provided 'as-is', without any express or implied warranty.
+// In no event will the authors be held liable for any damages arising from the use of this software.
+//
+// Permission is granted to anyone to use this software for any purpose,
+// including commercial applications, and to alter it and redistribute it freely,
+// subject to the following restrictions:
+//
+// 1. The origin of this software must not be misrepresented;
+// you must not claim that you wrote the original software.
+// If you use this software in a product, an acknowledgment
+// in the product documentation would be appreciated but is not required.
+//
+// 2. Altered source versions must be plainly marked as such,
+// and must not be misrepresented as being the original software.
+//
+// 3. This notice may not be removed or altered from any source distribution.
+//
+////////////////////////////////////////////////////////////
+
 #include "Animation.h"
 
-
-Animation::Animation()
+Animation::Animation() : m_texture(NULL)
 {
+
 }
 
-Animation::Animation(sf::Texture& texture)
+void Animation::addFrame(sf::IntRect rect)
 {
+    m_frames.push_back(rect);
 }
 
-Animation::~Animation()
+void Animation::setSpriteSheet(const sf::Texture& texture)
 {
+    m_texture = &texture;
 }
 
-void Animation::AddFrame(sf::IntRect rect)
+const sf::Texture* Animation::getSpriteSheet() const
 {
-	_frames.push_back(rect);
+    return m_texture;
 }
 
-void Animation::AnimTexture(sf::Texture &texture)
+std::size_t Animation::getSize() const
 {
-	_sprite.setTexture(texture);
+    return m_frames.size();
 }
 
-void Animation::Play()
+const sf::IntRect& Animation::getFrame(std::size_t n) const
 {
-	if (_frames.size() != NULL)
-	{
-		for (int i = 0; i < _frames.size(); i++)
-			_sprite.setTextureRect(_frames[i]);
-	}
-}
-
-
-
-
-void Animation::AddFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, float duration)
-{
-	//thor::FrameAnimation animation1;
-	const int step = (yFirst < yLast) ? +1 : -1;
-	yLast += step; // so yLast is excluded in the range
-
-	for (int y = yFirst; y != yLast; y += step)
-		animation.addFrame(duration, sf::IntRect(36 * x, 39 * y, 36, 39));
-}
-
-void Animation::AddAnimation(std::string id, thor::FrameAnimation &animation, float seconds)
-{
-	animator.addAnimation(id, animation, sf::seconds(seconds));
-}
-
-void Animation::PlayAnimation(std::string id, bool loop)
-{
-	animator.playAnimation(id, loop);
-}
-
-void Animation::StopAnimation()
-{
-	animator.stopAnimation(); // stop current animation
-}
-
-void Animation::Update()
-{
-	animator.update(DeltaTime.restart());
-}
-
-void Animation::AnimateSprite(sf::Sprite &sprite)
-{
-	animator.animate(sprite);
-}
-
-bool Animation::bIsAnimPlaying()
-{
-	return animator.isPlayingAnimation();
+    return m_frames[n];
 }

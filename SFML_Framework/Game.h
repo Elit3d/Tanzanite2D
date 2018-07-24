@@ -1,15 +1,12 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-#include <SFML\Graphics.hpp>
-#include <iostream>
-
 #include "GameStates.h"
 #include "Character.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Level.h"
-#include "Animation.h"
+#include "AnimatedSprite.h"
+#include <tmx/MapLoader.hpp>
 
 class Game
 {
@@ -29,10 +26,10 @@ private:
 	GameStates *state;
 	Player *player;
 	Enemy *enemy;
-	Level *level;
+	Animation WalkRight;
+	AnimatedSprite *animatedSprite;
 
-	Animation *PlayerAnimation;
-	Animation *EnemyAnimation;
+	sf::Clock frameClock; // for the animation
 
 	std::vector<Character*> charVector;
 	std::vector<Character*>::iterator charIter;
@@ -43,12 +40,8 @@ private:
 	sf::Texture animation_enemyTexture;
 	sf::Sprite animation_enemySprite;
 
-	thor::FrameAnimation walk_player;
-
-	thor::FrameAnimation shoot_enemy;
-
-	thor::Animator<sf::Sprite, std::string> animator;
-
+	tmx::MapLoader *ml;
+	sf::View view;
 };
 
 

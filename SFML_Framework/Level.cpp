@@ -21,6 +21,8 @@ bool Level::LoadFromFile(std::string filename)
 		std::cout << "Loading level \"" << filename << "\" failed." << std::endl;
 		return false;
 	}
+	else
+		std::cout << "Loading level \"" << filename << "\" success." << std::endl;
 
 	TiXmlElement *map;
 	map = levelFile.FirstChildElement("map");

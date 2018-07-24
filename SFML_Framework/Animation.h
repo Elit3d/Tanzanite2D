@@ -1,35 +1,47 @@
-#ifndef _ANIMATION_H_
-#define _ANIMATION_H_
+////////////////////////////////////////////////////////////
+//
+// Copyright (C) 2014 Maximilian Wagenbach (aka. Foaly) (foaly.f@web.de)
+//
+// This software is provided 'as-is', without any express or implied warranty.
+// In no event will the authors be held liable for any damages arising from the use of this software.
+//
+// Permission is granted to anyone to use this software for any purpose,
+// including commercial applications, and to alter it and redistribute it freely,
+// subject to the following restrictions:
+//
+// 1. The origin of this software must not be misrepresented;
+// you must not claim that you wrote the original software.
+// If you use this software in a product, an acknowledgment
+// in the product documentation would be appreciated but is not required.
+//
+// 2. Altered source versions must be plainly marked as such,
+// and must not be misrepresented as being the original software.
+//
+// 3. This notice may not be removed or altered from any source distribution.
+//
+////////////////////////////////////////////////////////////
 
-#include <Thor/Animations.hpp>
-#include <SFML/Graphics.hpp>
+#ifndef ANIMATION_INCLUDE
+#define ANIMATION_INCLUDE
+
+#include <vector>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 class Animation
 {
 public:
-	Animation();
-	Animation(sf::Texture &texture);
-	void AnimTexture(sf::Texture &texture);
-	sf::Texture GetTexture();
-	void AddFrame(sf::IntRect rect);
-	void Play();
-	~Animation();
+    Animation();
 
-	void AddFrames(thor::FrameAnimation& animation, int x, int yFirst, int yLast, float duration = 1.f);
-	void AddAnimation(std::string id, thor::FrameAnimation &animation, float seconds);
-	void Update();
-	void AnimateSprite(sf::Sprite &sprite);
-	void PlayAnimation(std::string id, bool loop);
-	void StopAnimation();
-	bool bIsAnimPlaying();
+    void addFrame(sf::IntRect rect);
+    void setSpriteSheet(const sf::Texture& texture);
+    const sf::Texture* getSpriteSheet() const;
+    std::size_t getSize() const;
+    const sf::IntRect& getFrame(std::size_t n) const;
+
 private:
-	thor::Animator<sf::Sprite, std::string> animator;
-	sf::Clock DeltaTime;
-
-
-	//new anim class
-	sf::Sprite _sprite;
-	std::vector<sf::IntRect> _frames;
+    std::vector<sf::IntRect> m_frames;
+    const sf::Texture* m_texture;
 };
 
-#endif
+#endif // ANIMATION_INCLUDE

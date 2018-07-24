@@ -31,6 +31,9 @@
     <Filter Include="Source Files\TinyXML">
       <UniqueIdentifier>{a26c0ff3-5577-48b2-9dbf-b5606ca58ac4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{dcf231a5-64ff-453a-b256-1d1571ef3543}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -62,6 +65,15 @@
     </ClInclude>
     <ClInclude Include="TinyXML\tinystr.h">
       <Filter>Header Files\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Static.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Dynamic.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +112,15 @@
     </ClCompile>
     <ClCompile Include="TinyXML\tinyxmlerror.cpp">
       <Filter>Source Files\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Static.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dynamic.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

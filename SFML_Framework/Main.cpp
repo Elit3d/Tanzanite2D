@@ -3,7 +3,10 @@
 int main()
 {
 	Game game;
-	sf::RenderWindow window(sf::VideoMode(200, 200), "My SFML Framework");
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 8;
+
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "My SFML Framework", sf::Style::Default ,settings);
 
 	game.Setup();
 	game.Update(window);

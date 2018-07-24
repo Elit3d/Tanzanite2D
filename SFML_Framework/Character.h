@@ -2,8 +2,7 @@
 #define _CHARACTER_H_
 
 #include "Entity.h"
-#include "Animation.h"
-#include <iostream>
+#include "AnimatedSprite.h"
 
 class Character :
 	public Entity

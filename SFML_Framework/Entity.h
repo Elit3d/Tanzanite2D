@@ -2,6 +2,7 @@
 #define _ENTITY_H_
 
 #include <SFML\Graphics.hpp>
+#include <iostream>
 
 class Entity
 {
