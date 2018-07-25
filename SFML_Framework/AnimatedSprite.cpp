@@ -22,19 +22,18 @@
 ////////////////////////////////////////////////////////////
 
 #include "AnimatedSprite.h"
-
+#include <iostream>
 AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused, bool looped) :
     m_animation(NULL), m_frameTime(frameTime), m_currentFrame(0), m_isPaused(paused), m_isLooped(looped), m_texture(NULL)
 {
-
 }
 
 void AnimatedSprite::setAnimation(const Animation& animation)
 {
-    m_animation = &animation;
-    m_texture = m_animation->getSpriteSheet();
-    m_currentFrame = 0;
-    setFrame(m_currentFrame);
+	m_animation = &animation;
+	m_texture = m_animation->getSpriteSheet();
+	m_currentFrame = 0;
+	setFrame(m_currentFrame);
 }
 
 void AnimatedSprite::setFrameTime(sf::Time time)
@@ -117,7 +116,7 @@ sf::Time AnimatedSprite::getFrameTime() const
 
 void AnimatedSprite::setFrame(std::size_t newFrame, bool resetTime)
 {
-    if (m_animation)
+	if (m_animation)
     {
         //calculate new vertex positions and texture coordiantes
         sf::IntRect rect = m_animation->getFrame(newFrame);
@@ -144,7 +143,6 @@ void AnimatedSprite::setFrame(std::size_t newFrame, bool resetTime)
 
 void AnimatedSprite::update(sf::Time deltaTime)
 {
-    // if not paused and we have a valid animation
     if (!m_isPaused && m_animation)
     {
         // add delta time
@@ -168,7 +166,6 @@ void AnimatedSprite::update(sf::Time deltaTime)
                 {
                     m_isPaused = true;
                 }
-
             }
 
             // set the current frame, not reseting the time

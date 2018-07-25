@@ -1,5 +1,4 @@
 #include "Game.h"
-#include <Thor/Animations.hpp>
 
 Game::Game()
 {
@@ -13,29 +12,13 @@ Game::~Game()
 void Game::Setup()
 {
 	state = new GameStates(State::SPLASH); // Set the first game state
-	player = new Player("images/player.png", 100, sf::Vector2f(10.0f, 100.0f)); // Player setup
-	enemy = new Enemy("images/enemy.png", 100, sf::Vector2f(10.0f, 10.0f)); // Enemy setup
+	player = new Player("images/player.png", 100, sf::Vector2f(10.0f, 100.0f), sf::seconds(0.2f), false, false); // Player setup
+	enemy = new Enemy("images/player.png", 100, sf::Vector2f(10.0f, 10.0f), sf::seconds(0.2f), false, true); // Enemy setup
 
 	charVector.push_back(player);
 	charVector.push_back(enemy);
 
 	animationTexture.loadFromFile("images/eanim.png");
-	animationSprite.setTexture(animationTexture);
-
-	animation_enemyTexture.loadFromFile("images/animation.png");
-	animation_enemySprite.setTexture(animation_enemyTexture);
-	animation_enemySprite.setPosition(64, 64);
-
-	// Animation setup
-	WalkRight.setSpriteSheet(animationTexture);
-	WalkRight.addFrame(sf::IntRect(32, 64, 32, 32));
-	WalkRight.addFrame(sf::IntRect(64, 64, 32, 32));
-	WalkRight.addFrame(sf::IntRect(32, 64, 32, 32));
-	WalkRight.addFrame(sf::IntRect(0, 64, 32, 32));
-
-	// set up AnimatedSprite
-	animatedSprite = new AnimatedSprite(sf::seconds(0.2), true, false);
-	animatedSprite->setPosition(sf::Vector2f(1280 / 2, 0.0f));
 
 	//ml.load("isometric_grass_and_water.tmx");
 	ml = new tmx::MapLoader("maps/");
@@ -57,13 +40,8 @@ void Game::Update(sf::RenderWindow &window)
 				switch (event.key.code)
 				{
 				case sf::Keyboard::W:
-					player->sprite.move(0.f, -1.f);
-
-					if (player->Collision(enemy->sprite))
-						player->sprite.move(0.f, 1.f);
 					break;
 				case sf::Keyboard::A:
-					view.move(sf::Vector2f(-10.0f, .0f));
 					break;
 				}
 			}
@@ -82,21 +60,36 @@ void Game::Update(sf::RenderWindow &window)
 
 			UpdateGameStates();
 
-			for (charIter = charVector.begin(); charIter != charVector.end(); charIter++)
-			{
-				(*charIter)->Update();
-			}
-
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
 		
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) // Right
+		{
+			player->animated_sprite->move(1.f, .0f);
+
+			if (player->Collision(enemy->sprite))
+				player->animated_sprite->move(-1.f, .0f);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // Left
+		{
+			player->animated_sprite->move(-1.f, .0f);
+
+			if (player->Collision(enemy->sprite))
+				player->animated_sprite->move(1.f, .0f);
+		}
+		else
+		{
+			// Do nothing
+		}
+
 		sf::Time frameTime = frameClock.restart();
 
-		animatedSprite->play(WalkRight);
-
-		// update AnimatedSprite
-		animatedSprite->update(frameTime);
+		// Update all characters
+		for (charIter = charVector.begin(); charIter != charVector.end(); charIter++)
+		{
+			(*charIter)->Update();
+		}
 
 		Draw(window);
 	}
@@ -127,7 +120,7 @@ void Game::Draw(sf::RenderWindow &window)
 	switch (state->GetState())
 	{
 	case SPLASH:
-		// set window view
+		// Set window view
 		window.setView(view);
 		// Draw level
 		window.draw(*ml);
@@ -137,8 +130,7 @@ void Game::Draw(sf::RenderWindow &window)
 		{
 			(it)->Draw(window);
 		}
-		
-		window.draw(*animatedSprite);
+	
 		break;
 	case MENU:
 		break;

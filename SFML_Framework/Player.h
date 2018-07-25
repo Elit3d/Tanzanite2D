@@ -8,7 +8,8 @@ class Player :
 public:
 	Player();
 	~Player();
-	Player(std::string imgpath, int health, sf::Vector2f location);
+	Player(std::string imgpath, int health, 
+		sf::Vector2f position, sf::Time frameTime, bool paused, bool looped);
 
 	void Update();
 	void Draw(sf::RenderWindow &window);
@@ -18,6 +19,8 @@ public:
 
 	bool Collision(sf::Sprite &s);
 private:
+	Animation WalkUp;
+
 };
 
 

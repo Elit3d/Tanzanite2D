@@ -30,6 +30,7 @@ Animation::Animation() : m_texture(NULL)
 
 void Animation::addFrame(sf::IntRect rect)
 {
+	rect = sf::IntRect(rect.left * rect.width, rect.top * rect.height, rect.width, rect.height);
     m_frames.push_back(rect);
 }
 

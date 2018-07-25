@@ -26,8 +26,11 @@ private:
 	GameStates *state;
 	Player *player;
 	Enemy *enemy;
-	Animation WalkRight;
-	AnimatedSprite *animatedSprite;
+	//Animation WalkRight;
+	//Animation Idle;
+	//Animation WalkLeft;
+	//AnimatedSprite *animatedSprite;
+	//Animation* currentAnimation;
 
 	sf::Clock frameClock; // for the animation
 
@@ -35,10 +38,6 @@ private:
 	std::vector<Character*>::iterator charIter;
 
 	sf::Texture animationTexture;
-	sf::Sprite animationSprite;
-
-	sf::Texture animation_enemyTexture;
-	sf::Sprite animation_enemySprite;
 
 	tmx::MapLoader *ml;
 	sf::View view;

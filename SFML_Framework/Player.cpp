@@ -10,11 +10,20 @@ Player::~Player()
 {
 }
 
-Player::Player(std::string imgpath, int health, sf::Vector2f location)
-	: Character(imgpath, health, location)
+Player::Player(std::string imgpath, int health, 
+	sf::Vector2f position, sf::Time frameTime, bool paused, bool looped)
+	: Character(imgpath, health, position, frameTime, paused, looped)
 {
-	sf::Texture t;
-	t.loadFromFile(imgpath);
+	WalkUp.setSpriteSheet(texture);
+	WalkUp.addFrame(sf::IntRect(1, 0, 64, 64));
+	WalkUp.addFrame(sf::IntRect(2, 0, 64, 64));
+	WalkUp.addFrame(sf::IntRect(3, 0, 64, 64));
+	WalkUp.addFrame(sf::IntRect(4, 0, 64, 64));
+	WalkUp.addFrame(sf::IntRect(5, 0, 64, 64));
+	WalkUp.addFrame(sf::IntRect(6, 0, 64, 64));
+	WalkUp.addFrame(sf::IntRect(7, 0, 64, 64));
+	WalkUp.addFrame(sf::IntRect(8, 0, 64, 64));
+	currentAnimation = &WalkUp;
 }
 
 void Player::Update()

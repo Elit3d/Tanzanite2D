@@ -20,7 +20,7 @@ class Enemy :
 public:
 	Enemy();
 	~Enemy();
-	Enemy(std::string imgpath, int health, sf::Vector2f location);
+	Enemy(std::string imgpath, int health, sf::Vector2f position, sf::Time frameTime, bool paused, bool looped);
 
 	void Update();
 	void Draw(sf::RenderWindow &window);
@@ -36,6 +36,11 @@ protected:
 	void States();
 private:
 	EnemyStates *state;
+
+	Animation WalkUp;
+	Animation WalkDown;
+	Animation WalkLeft;
+	Animation WalkRight;
 };
 
 #endif
