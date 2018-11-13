@@ -7,7 +7,7 @@ Currently runs on SFML 2.4.0 -- Will be keeping it up to date as much as possibl
 - **Map Loader** - Can load .tmx map files created using Tiled
 - **Entities** - Handles creating, drawing and updating character entities
 - **Game States** - Easily create and manage scenes for your game
-- **Animations** - Animate your characters and dynamic objects *(right now character class doesnt call animation, this will be added to the next update)*
+- **Animations** - Animate your characters and dynamic objects
 
 # Roadmap
 Please visit the [TRELLO](https://trello.com/b/9J80zNsI/tanzanite2d) page to see the roadmap of my framework, there you can see what is being worked on and the timeframe you can expect it done by
